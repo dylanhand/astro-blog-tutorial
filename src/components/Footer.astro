@@ -1,21 +1,7 @@
 ---
-const socialMedia = {
-  github: 'dylanhand',
-  instagram: 'dylanhand',
-  facebook: 'dylanhand',
-  twitter: 'dylanhand',
-  youtube: 'dhand'
-}
-
-const socialKeys = Object.keys(socialMedia)
-
-const thing = ['a', 'b', 'c']
+const platform = "github";
+const username = "dylanhand";
 ---
 <footer>
-    <p>Find me on social media:</p>
-    {thing.map((element) => <p>{element}</p>)}
-
-    {socialKeys.map((key) => <p>{key}: {socialMedia[key]}</p>)}
-
-    {Object.entries(socialMedia).map(([key, value]) => <p>{key} and {value}</p>)}
+    <p>Learn more about my projects on <a href={`https://${platform}.com/${username}`}>{platform}</a>.</p>
 </footer>
