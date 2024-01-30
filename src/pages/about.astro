@@ -2,8 +2,6 @@
 import '../styles/global.css';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "About Me";
-
 const identity = {
   firstName: "Dylan",
   country: "Sweden",
@@ -21,7 +19,7 @@ const skillColor = "navy";
 const fontWeight = "bold";
 const textCase = "uppercase";
 ---
-<BaseLayout pageTitle="About">
+<BaseLayout pageTitle="About Me">
     <p>Some info about me:</p>
     <ul>
         <li>My name is {identity.firstName}.</li>
