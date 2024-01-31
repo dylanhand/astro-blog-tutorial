@@ -2,26 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 
-console.log("hello from tag page")
-
-export function getTags(posts): string[] {
-    const tags: string[] = [];
-    posts.forEach(post => {
-        if (post.frontmatter.tags) {
-            post.frontmatter.tags.forEach(tag => {
-                if (!tags.includes(tag)) {
-                    tags.push(tag);
-                }
-            })
-        }
-    })
-    return tags;
-}
-
 export async function getStaticPaths() {
     const allPosts = await Astro.glob('../posts/*.md')
-    const tags = getTags(allPosts)
-    const staticPaths = tags.map(tag => ({ params: { tag: tag }, props: { posts: allPosts } }))
+    const uniqueTags = [...new Set(allPosts.flatMap(post => post.frontmatter.tags))]
+    const staticPaths = uniqueTags.map(tag => ({ params: { tag: tag }, props: { posts: allPosts } }))
     return staticPaths
 }
 
