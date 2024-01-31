@@ -5,17 +5,22 @@ import BlogPost from '../../components/BlogPost.astro';
 export async function getStaticPaths() {
     const allPosts = await Astro.glob('../posts/*.md')
     const uniqueTags = [...new Set(allPosts.flatMap(post => post.frontmatter.tags))]
-    const staticPaths = uniqueTags.map(tag => ({ params: { tag: tag }, props: { posts: allPosts } }))
+    const staticPaths = uniqueTags.map(tag => {
+        const filteredPosts = allPosts.filter(post => post.frontmatter.tags?.includes(tag))
+        return {
+            params: { tag: tag }, 
+            props: { posts: filteredPosts },
+        }
+    })
     return staticPaths
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-const filteredPosts = posts.filter(post => post.frontmatter.tags?.includes(tag));
 ---
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <ul>
-    {filteredPosts.map(post => <BlogPost title={post.frontmatter.title} date={post.frontmatter.pubDate} url={post.url} />)}
+    {posts.map(post => <BlogPost title={post.frontmatter.title} date={post.frontmatter.pubDate} url={post.url} />)}
   </ul>
 </BaseLayout>
