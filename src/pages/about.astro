@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { Picture } from 'astro:assets';
+import profilePic from '../images/profile-pic.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const identity = {
@@ -24,6 +26,16 @@ const goal = 3;
             <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
         }
     </ul>
+    <div class="center">
+        <Picture 
+            src={profilePic} 
+            formats={['avif', 'webp']} 
+            widths={[160, 320]}
+            alt="profile pic of Dylan" 
+            width="160" 
+            height="160" 
+        />
+    </div>
     <p>My skills are:</p>
     <ul>
         {skills.map((skill) => <li class="skill">{skill}</li>)}
@@ -34,3 +46,12 @@ const goal = 3;
 
     {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
 </BaseLayout>
+
+<style>
+    .center {
+        text-align: center;
+        img {
+            border-radius: 50%;
+        }
+    }
+</style>
