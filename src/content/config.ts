@@ -15,6 +15,29 @@ const postsCollection = defineCollection({
     }),
 });
 
+const releasesCollection = defineCollection({
+    type: 'data',
+    schema: z.object({
+        name: z.string(),
+        slug: z.string(),
+        date: z.date(),
+        title: z.string(),
+        description: z.string(),
+        image: z.string(),
+        artists: z.array(z.string()),
+        bandcamp: z.string().url().optional(),
+        spotify: z.string().url().optional(),
+        appleMusic: z.string().url().optional(),
+        soundcloud: z.string().url().optional(),
+        youtube: z.string().url().optional(),
+        amazonMusic: z.string().url().optional(),
+        tidal: z.string().url().optional(),
+        deezer: z.string().url().optional(),
+        lyrics: z.string(),
+    }),
+});
+
 export const collections = {
     posts: postsCollection,
+    releases: releasesCollection,
 };

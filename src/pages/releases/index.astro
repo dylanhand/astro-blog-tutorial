@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content"
+import BaseLayout from '../../layouts/BaseLayout.astro'
+const allReleases = await getCollection("releases")
+---
+<BaseLayout pageTitle="Releases">
+    <ul>
+        {allReleases.map(release => (
+            <li><p class="tag"><a href={`/releases/${release.data.slug}`}>{release.data.name}</a></p></li>
+        ))}
+    </ul>
+</BaseLayout>
+<style>
+  a {
+    color: #00539F;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    margin: 0.25em;
+    border: dotted 1px #a1a1a1;
+    border-radius: .5em;
+    padding: .5em 1em;
+    font-size: 1.15em;
+    background-color: #F8FCFD;
+  }
+</style>
