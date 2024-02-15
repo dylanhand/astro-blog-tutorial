@@ -1,14 +1,15 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
-import type { Frontmatter } from '../../types/frontmatter';
 
 export const getStaticPaths = (async () => {
-    const allPosts: Record<string, any>[] = await Astro.glob<Frontmatter>('../posts/*.md')
-    const uniqueTags = [...new Set(allPosts.flatMap(post => post.frontmatter.tags))]
+    // const allPosts: Record<string, any>[] = await getCollection("posts")
+    const allPosts = await getCollection("posts")
+    const uniqueTags = [...new Set(allPosts.flatMap(post => post.data.tags))]
     const staticPaths = uniqueTags.map(tag => {
-        const filteredPosts = allPosts.filter(post => post.frontmatter.tags?.includes(tag))
+        const filteredPosts = allPosts.filter(post => post.data.tags?.includes(tag))
         return {
             params: { tag: tag }, 
             props: { posts: filteredPosts },
@@ -26,6 +27,6 @@ const { posts } = Astro.props as Props;
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <ul>
-    {posts.map(post => <BlogPost title={post.frontmatter.title} date={post.frontmatter.pubDate} url={post.url} />)}
+    {posts.map(post => <BlogPost title={post.data.title} date={post.data.pubDate} url=`/posts/${post.slug}` />)}
   </ul>
 </BaseLayout>

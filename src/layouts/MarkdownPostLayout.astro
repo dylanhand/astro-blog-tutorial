@@ -1,20 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import type { Frontmatter } from '../types/frontmatter';
-interface Props {
-  frontmatter: Frontmatter;
-}
 const { frontmatter } = Astro.props;
 ---
 <BaseLayout pageTitle={frontmatter.title}>
   <article>
-    <p>{frontmatter.pubDate.slice(0,10)}</p>
+    <p>{frontmatter.pubDate.toDateString()}</p>
     <p><em>{frontmatter.description}</em></p>
     <p>Written by: {frontmatter.author}</p>
     <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
     <slot />
     <div class="tags">
-        {frontmatter.tags?.map(tag => (
+        {frontmatter.tags?.map((tag: string) => (
             <a href={`/tags/${tag}`} class="tag">{tag}</a>
         ))
     </div>
