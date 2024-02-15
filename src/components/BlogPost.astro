@@ -7,4 +7,4 @@ const { title, url, date } = Astro.props;
         color: #999;
     }
 </style>
-<li><a href={url}>{title} - <span class="date">{date.slice(0,10)}</span></a></li>
+<li><a href={url}>{title} - <span class="date">{date.toDateString()}</span></a></li>
