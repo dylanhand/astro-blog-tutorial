@@ -3,14 +3,15 @@ slug: champagne
 date: 2023-10-13
 title: Champagne by Dylan Hand
 description: fetch me a glass of champagne
-image: champagne-cover.jpg
+image: ../../images/champagne-cover.jpg
+imageAlt: 'Champagne cover art: Dylan Hand holding a glass of champagne in his right hand and a bottle of champagne in his left hand wearing a light green button-up linen shirt in a chair in front of a white background'
 artists: ["Dylan Hand"]
 bandcamp: https://dylanhand.bandcamp.com/track/champagne
 spotify: https://open.spotify.com/track/2pP7g03z4qW04WR3ARijSE
-apple-music: https://geo.music.apple.com/us/album/_/1710688390?i=1710688391&mt=1&app=music&ls=1&at=1000lHKX&ct=api_http&itscg=30200&itsct=odsl_m
+appleMusic: https://geo.music.apple.com/us/album/_/1710688390?i=1710688391&mt=1&app=music&ls=1&at=1000lHKX&ct=api_http&itscg=30200&itsct=odsl_m
 soundcloud: https://soundcloud.com/dylanhand/champagne
 youtube: https://www.youtube.com/watch?v=fqkgDOHFZo4
-amazon-music: https://music.amazon.com/albums/B0CKKDRR9B?trackAsin=B0CKKQ18ZW
+amazonMusic: https://music.amazon.com/albums/B0CKKDRR9B?trackAsin=B0CKKQ18ZW
 tidal: https://listen.tidal.com/track/320171853
 deezer: https://www.deezer.com/track/2487329791
 lyrics: |

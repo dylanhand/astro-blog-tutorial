@@ -17,13 +17,16 @@ const postsCollection = defineCollection({
 
 const releasesCollection = defineCollection({
     type: 'data',
-    schema: z.object({
+    schema: ({ image }) => z.object({
         name: z.string(),
         slug: z.string(),
         date: z.date(),
         title: z.string(),
         description: z.string(),
-        image: z.string(),
+        image: image().refine((img) => img.width >= 900, {
+            message: 'Image must be at least 900px wide',
+        }),
+        imageAlt: z.string(),
         artists: z.array(z.string()),
         bandcamp: z.string().url().optional(),
         spotify: z.string().url().optional(),

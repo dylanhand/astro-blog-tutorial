@@ -1,13 +1,24 @@
 ---
+import { Picture } from "astro:assets"
 import { getCollection } from "astro:content"
 import BaseLayout from '../../layouts/BaseLayout.astro'
 const allReleases = await getCollection("releases")
 ---
 <BaseLayout pageTitle="Releases">
     <ul>
-        {allReleases.map(release => (
-            <li><p class="tag"><a href={`/releases/${release.data.slug}`}>{release.data.name}</a></p></li>
-        ))}
+      {allReleases.map(release => (
+        <div>
+          <Picture 
+            src={release.data.image} 
+            alt={release.data.imageAlt} 
+            formats={['avif', 'webp']} 
+            widths={[200, 400]}
+            width="200" 
+            height="200" 
+          />
+        </div>
+        <li><p class="tag"><a href={`/releases/${release.data.slug}`}>{release.data.name}</a></p></li>
+      ))}
     </ul>
 </BaseLayout>
 <style>

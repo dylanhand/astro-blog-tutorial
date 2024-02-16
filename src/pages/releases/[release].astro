@@ -1,4 +1,5 @@
 ---
+import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { /*InferGetStaticParamsType,*/ InferGetStaticPropsType, GetStaticPaths } from 'astro';
@@ -22,6 +23,14 @@ const { release } = Astro.props as Props;
 const data = release.data;
 ---
 <BaseLayout pageTitle={data.name}>
+  <Picture 
+    src={data.image} 
+    alt={data.imageAlt} 
+    formats={['avif', 'webp']} 
+    widths={[200, 400]}
+    width="200" 
+    height="200" 
+  />
   <p>{data.name}</p>
   <p>{data.date.toDateString()}</p>
   {data.bandcamp && <p>bandcamp: {data.bandcamp}</p>}
